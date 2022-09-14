@@ -1,18 +1,19 @@
 FROM beevelop/android
 
-ENV NODE_VERSION 8.x
-ENV IONIC_VERSION 2.2.0
+ENV NODE_VERSION=8.9.0
+RUN apt install -y curl
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+ENV NVM_DIR=/root/.nvm
+RUN . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION}
+RUN . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION}
+RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
+ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
+RUN node --version
+RUN npm --version
 
-RUN apt-get update && apt-get install -y curl gnupg2 lsb-release && \
-    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
-    apt-key fingerprint 1655A0AB68576280 && \
-    export VERSION=setup_${NODE_VERSION} && \
-    export DISTRO="$(lsb_release -s -c)" && \
-    echo "deb https://deb.nodesource.com/$VERSION $DISTRO main" | tee /etc/apt/sources.list.d/nodesource.list && \
-    echo "deb-src https://deb.nodesource.com/$VERSION $DISTRO main" | tee -a /etc/apt/sources.list.d/nodesource.list && \
-    apt-get update && apt-get install -y nodejs && \
-    node -v && npm -v && \
-    npm install -g --unsafe-perm @ionic/cli@${IONIC_VERSION} && \
+
+ENV IONIC_VERSION=2.2.0
+RUN npm install -g --unsafe-perm @ionic/cli@${IONIC_VERSION} && \
     ionic --version && \
     npm install -g yarn && \
     yarn -v && \
