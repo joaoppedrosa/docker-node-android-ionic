@@ -18,7 +18,7 @@ ENV CORDOVA_VERSION=8.8.1
 
 RUN npm install -g --unsafe-perm ionic@${IONIC_VERSION} && \
     ionic --version && \
-    pm install -g --unsafe-perm cordova@${CORDOVA_VERSION} && \
+    npm install -g --unsafe-perm cordova@${CORDOVA_VERSION} && \
     cordova --version && \
     npm install -g yarn && \
     yarn -v && \
