@@ -45,7 +45,7 @@ ENV PATH $PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_SDK_ROO
 
 WORKDIR /opt
 
-RUN sudo apt-get install tree
+RUN apt-get install tree
 RUN tree /opt
 RUN tree /opt/android
 RUN apt-get -qq update && \
