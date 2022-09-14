@@ -2,7 +2,7 @@
 Docker image for legacy ionic apps
 
 
-### based on [beevelop/android](https://github.com/beevelop/docker-android)
+### Based on [beevelop/android](https://github.com/beevelop/docker-android)
 - Java 8 (OpenJDK 1.8.0_282)
 - Gradle 4.4.1 (Groovy: 2.4.16)
 - Apache Maven 3.6.3
