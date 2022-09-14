@@ -1,12 +1,10 @@
 # docker-node-android-ionic
 Docker image for legacy ionic apps
 
-
-### Based on [beevelop/android](https://github.com/beevelop/docker-android)
+### Based on [beevelop](https://github.com/beevelop/)
 - Java 8 (OpenJDK 1.8.0_282)
 - Gradle 4.4.1 (Groovy: 2.4.16)
-- Apache Maven 3.6.3
-- Ant 1.10.7
+- Android 12
 - Node 8.9.0
 - Ionic 2.2.0
-- Cordova 8.8.1
+- Cordova 8.1.1
