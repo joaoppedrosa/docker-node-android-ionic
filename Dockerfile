@@ -38,12 +38,16 @@ ENV ANDROID_SDK_URL="https://dl.google.com/android/repository/commandlinetools-l
     ANT_HOME="/usr/share/ant" \
     MAVEN_HOME="/usr/share/maven" \
     GRADLE_HOME="/usr/share/gradle" \
-    ANDROID_SDK_ROOT="/opt/android"
+    ANDROID_SDK_ROOT="/opt/android" \
+    ANDROID_HOME="/opt/android/android-sdk-linux"
 
-ENV PATH $PATH:$ANDROID_SDK_ROOT/cmdline-tools/bin:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/tools/bin:$ANDROID_SDK_ROOT/build-tools/$ANDROID_BUILD_TOOLS_VERSION:$ANT_HOME/bin:$MAVEN_HOME/bin:$GRADLE_HOME/bin
+ENV PATH $PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_SDK_ROOT/cmdline-tools/bin:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/tools/bin:$ANDROID_SDK_ROOT/build-tools/$ANDROID_BUILD_TOOLS_VERSION:$ANT_HOME/bin:$MAVEN_HOME/bin:$GRADLE_HOME/bin
 
 WORKDIR /opt
 
+RUN sudo apt-get install tree
+RUN tree /opt
+RUN tree /opt/android
 RUN apt-get -qq update && \
     apt-get -qq install -y wget curl maven ant gradle
 
