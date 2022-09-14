@@ -1,6 +1,7 @@
 FROM beevelop/android
 
 ENV NODE_VERSION=8.9.0
+
 RUN apt install -y curl
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 ENV NVM_DIR=/root/.nvm
@@ -13,8 +14,12 @@ RUN npm --version
 
 
 ENV IONIC_VERSION=2.2.0
-RUN npm install -g --unsafe-perm @ionic/cli@${IONIC_VERSION} && \
+ENV CORDOVA_VERSION=8.8.1
+
+RUN npm install -g --unsafe-perm ionic@${IONIC_VERSION} && \
     ionic --version && \
+    pm install -g --unsafe-perm cordova@${CORDOVA_VERSION} && \
+    cordova --version && \
     npm install -g yarn && \
     yarn -v && \
     apt-get clean && \
