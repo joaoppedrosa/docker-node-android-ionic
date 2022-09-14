@@ -45,7 +45,7 @@ ENV PATH $PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_SDK_ROO
 
 WORKDIR /opt
 
-RUN ls -R
+RUN ls /opt -R
 RUN apt-get -qq update && \
     apt-get -qq install -y wget curl maven ant gradle
 
