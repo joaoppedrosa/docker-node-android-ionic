@@ -33,7 +33,6 @@ RUN apt-get update && \
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
 # Install Git
-
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y git
