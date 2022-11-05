@@ -32,6 +32,12 @@ RUN apt-get update && \
 
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
+# Install Git
+
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y git
+
 # Install Android (https://developer.android.com/studio/#downloads)
 ENV ANDROID_SDK_URL="https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip" \
     ANDROID_BUILD_TOOLS_VERSION=32.0.0 \
