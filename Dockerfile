@@ -45,7 +45,7 @@ RUN \
   curl -L https://github.com/sstephenson/ruby-build/archive/v20180329.tar.gz | tar -zxvf - -C /tmp/ && \
   cd /tmp/ruby-build-* && ./install.sh && cd / && \
   ruby-build -v 2.5.1 /usr/local && rm -rfv /tmp/ruby-build-* && \
-  gem install bundler --no-rdoc --no-ri
+  gem install bundler --no-rdoc --no-ri && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
   
 # Install Python
@@ -55,7 +55,7 @@ RUN apt update -y && apt upgrade -y && \
     wget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tgz | tar -zxvf - -C /tmp/ && \
     cd /tmp/Python-2.7.12 && \
     ./configure --enable-optimizations && \
-    make altinstall
+    make altinstall && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install Android (https://developer.android.com/studio/#downloads)
