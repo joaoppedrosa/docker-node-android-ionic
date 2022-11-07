@@ -36,6 +36,25 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y git
+    
+# Install Ruby
+RUN \
+  apt-get update && apt-get install -y --no-install-recommends --no-install-suggests curl bzip2 build-essential libssl-dev libreadline-dev zlib1g-dev && \
+  rm -rf /var/lib/apt/lists/* && \
+  curl -L https://github.com/sstephenson/ruby-build/archive/v20180329.tar.gz | tar -zxvf - -C /tmp/ && \
+  cd /tmp/ruby-build-* && ./install.sh && cd / && \
+  ruby-build -v 2.5.1 /usr/local && rm -rfv /tmp/ruby-build-* && \
+  gem install bundler --no-rdoc --no-ri
+  
+# Install Python
+RUN apt update -y && sudo apt upgrade -y && \
+    apt-get install -y wget build-essential checkinstall  libreadline-gplv2-dev  libncursesw5-dev  libssl-dev  libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev zlib1g-dev && \
+    cd /usr/src && \
+    sudo wget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tgz && \
+    sudo tar xzf Python-2.7.12.tgz && \
+    cd Python-2.7.12 && \
+    sudo ./configure --enable-optimizations && \
+    sudo make altinstall
 
 # Install Android (https://developer.android.com/studio/#downloads)
 ENV ANDROID_SDK_URL="https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip" \
