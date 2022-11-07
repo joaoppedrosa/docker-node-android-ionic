@@ -22,6 +22,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
       TERM=xterm
 
 RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
 
 # Install Java
 RUN apt-get update && \
@@ -47,14 +48,14 @@ RUN \
   gem install bundler --no-rdoc --no-ri
   
 # Install Python
-RUN apt update -y && sudo apt upgrade -y && \
+RUN apt update -y && apt upgrade -y && \
     apt-get install -y wget build-essential checkinstall  libreadline-gplv2-dev  libncursesw5-dev  libssl-dev  libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev zlib1g-dev && \
     cd /usr/src && \
-    sudo wget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tgz && \
-    sudo tar xzf Python-2.7.12.tgz && \
+    wget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tgz && \
+    tar xzf Python-2.7.12.tgz && \
     cd Python-2.7.12 && \
-    sudo ./configure --enable-optimizations && \
-    sudo make altinstall
+    ./configure --enable-optimizations && \
+    make altinstall
 
 # Install Android (https://developer.android.com/studio/#downloads)
 ENV ANDROID_SDK_URL="https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip" \
