@@ -2,7 +2,6 @@
 Docker image for legacy ionic apps
 
 ### Based on [beevelop](https://github.com/beevelop/)
-- Git
 - Ruby 2.5.1
 - Python 2.7.12
 - Java 8 (OpenJDK 1.8.0_282)
